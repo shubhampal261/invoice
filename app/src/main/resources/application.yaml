@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/user_management
     username: postgres
-    password: shubham.pal
+    password: postgres
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
