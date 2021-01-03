@@ -11,7 +11,7 @@ public interface InvoiceService {
 
     public InvoiceResponseModel getByID(int id);
 
-    public InvoiceResponseModel add(Invoice user);
+    public InvoiceResponseModel add(Invoice invoice);
 
     public InvoiceResponseModel deleteById(int id);
 }
