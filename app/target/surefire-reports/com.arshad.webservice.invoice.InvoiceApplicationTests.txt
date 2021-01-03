@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.arshad.webservice.invoice.InvoiceApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.518 s - in com.arshad.webservice.invoice.InvoiceApplicationTests
