@@ -23,22 +23,24 @@ public class InvoiceResponseModel {
 
     private Double quantity;
 
-    private Date createdAt;
+    private Double rate;
 
-    private Date updatedAt;
+    private Double amount;
 
     public InvoiceResponseModel() {
     }
 
-    public InvoiceResponseModel(int id, String number, Date invoiceDate, Integer customer, Integer product, Double quantity, Date createdAt, Date updatedAt) {
+    public InvoiceResponseModel(int id, String number, Date invoiceDate, Integer customer, UserResponseModel customerDetails, Integer product, ProductResponseModel productDetails, Double quantity, Double rate, Double amount) {
         this.id = id;
         this.number = number;
         this.invoiceDate = invoiceDate;
         this.customer = customer;
+        this.customerDetails = customerDetails;
         this.product = product;
+        this.productDetails = productDetails;
         this.quantity = quantity;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.rate = rate;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -73,12 +75,28 @@ public class InvoiceResponseModel {
         this.customer = customer;
     }
 
+    public UserResponseModel getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public void setCustomerDetails(UserResponseModel customerDetails) {
+        this.customerDetails = customerDetails;
+    }
+
     public Integer getProduct() {
         return product;
     }
 
     public void setProduct(Integer product) {
         this.product = product;
+    }
+
+    public ProductResponseModel getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(ProductResponseModel productDetails) {
+        this.productDetails = productDetails;
     }
 
     public Double getQuantity() {
@@ -89,35 +107,19 @@ public class InvoiceResponseModel {
         this.quantity = quantity;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Double getRate() {
+        return rate;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public UserResponseModel getCustomerDetails() {
-        return customerDetails;
-    }
-
-    public void setCustomerDetails(UserResponseModel customerDetails) {
-        this.customerDetails = customerDetails;
-    }
-
-    public ProductResponseModel getProductDetails() {
-        return productDetails;
-    }
-
-    public void setProductDetails(ProductResponseModel productDetails) {
-        this.productDetails = productDetails;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

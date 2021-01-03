@@ -37,11 +37,13 @@ public class Invoice {
     @UpdateTimestamp
     private Date updatedAt;
 
+    @Column(name = "rate", nullable = false)
+    private Double rate;
 
     public Invoice() {
     }
 
-    public Invoice(int id, String number, Date invoiceDate, Integer customer, Integer product, Double quantity, Date createdAt, Date updatedAt) {
+    public Invoice(int id, String number, Date invoiceDate, Integer customer, Integer product, Double quantity, Date createdAt, Date updatedAt, Double rate) {
         this.id = id;
         this.number = number;
         this.invoiceDate = invoiceDate;
@@ -50,10 +52,11 @@ public class Invoice {
         this.quantity = quantity;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.rate = rate;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Invoice{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
@@ -63,6 +66,7 @@ public class Invoice {
                 ", quantity=" + quantity +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", rate=" + rate +
                 '}';
     }
 
@@ -128,5 +132,13 @@ public class Invoice {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 }
