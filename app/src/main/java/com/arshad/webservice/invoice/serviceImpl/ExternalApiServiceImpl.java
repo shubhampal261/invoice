@@ -1,7 +1,7 @@
 package com.arshad.webservice.invoice.serviceImpl;
 
+import com.arshad.webservice.invoice.beans.CustomerResponseModel;
 import com.arshad.webservice.invoice.beans.ProductResponseModel;
-import com.arshad.webservice.invoice.beans.UserResponseModel;
 import com.arshad.webservice.invoice.services.ExternalApiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -34,11 +34,11 @@ public class ExternalApiServiceImpl implements ExternalApiService {
         }
     }
 
-    public UserResponseModel getCustomerById(final Integer id) {
-        final String uri = this.customerBaseURL + "/v1/user-management/user/" + id.toString();
+    public CustomerResponseModel getCustomerById(final Integer id) {
+        final String uri = this.customerBaseURL + "/v1/customer/" + id.toString();
         final RestTemplate restTemplate = new RestTemplate();
         try {
-            final UserResponseModel result = restTemplate.getForObject(uri, UserResponseModel.class);
+            final CustomerResponseModel result = restTemplate.getForObject(uri, CustomerResponseModel.class);
             System.out.println(result);
             return result;
         } catch (HttpClientErrorException ex) {

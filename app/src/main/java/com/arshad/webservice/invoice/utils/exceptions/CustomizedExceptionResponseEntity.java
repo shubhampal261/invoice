@@ -23,7 +23,7 @@ public class CustomizedExceptionResponseEntity extends ResponseEntityExceptionHa
     }
 
     @ExceptionHandler(InvoiceNotFoundException.class)
-    public final ResponseEntity<Object> handleUserNotFoundException(InvoiceNotFoundException ex, WebRequest request){
+    public final ResponseEntity<Object> handleNotFoundException(InvoiceNotFoundException ex, WebRequest request){
         ExceptionResponse exceptionResponse =
                 new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 

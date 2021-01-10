@@ -15,7 +15,7 @@ public class InvoiceResponseModel {
 
     private Integer customer;
 
-    private UserResponseModel customerDetails;
+    private CustomerResponseModel customerDetails;
 
     private Integer product;
 
@@ -30,7 +30,7 @@ public class InvoiceResponseModel {
     public InvoiceResponseModel() {
     }
 
-    public InvoiceResponseModel(int id, String number, Date invoiceDate, Integer customer, UserResponseModel customerDetails, Integer product, ProductResponseModel productDetails, Double quantity, Double rate, Double amount) {
+    public InvoiceResponseModel(int id, String number, Date invoiceDate, Integer customer, CustomerResponseModel customerDetails, Integer product, ProductResponseModel productDetails, Double quantity, Double rate, Double amount) {
         this.id = id;
         this.number = number;
         this.invoiceDate = invoiceDate;
@@ -75,11 +75,11 @@ public class InvoiceResponseModel {
         this.customer = customer;
     }
 
-    public UserResponseModel getCustomerDetails() {
+    public CustomerResponseModel getCustomerDetails() {
         return customerDetails;
     }
 
-    public void setCustomerDetails(UserResponseModel customerDetails) {
+    public void setCustomerDetails(CustomerResponseModel customerDetails) {
         this.customerDetails = customerDetails;
     }
 

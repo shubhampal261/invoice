@@ -3,7 +3,7 @@ package com.arshad.webservice.invoice.serviceImpl;
 import com.arshad.webservice.invoice.beans.Invoice;
 import com.arshad.webservice.invoice.beans.InvoiceResponseModel;
 import com.arshad.webservice.invoice.beans.ProductResponseModel;
-import com.arshad.webservice.invoice.beans.UserResponseModel;
+import com.arshad.webservice.invoice.beans.CustomerResponseModel;
 import com.arshad.webservice.invoice.mapper.InvoiceMapper;
 import com.arshad.webservice.invoice.repo.InvoiceJPARepository;
 import com.arshad.webservice.invoice.services.ExternalApiService;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 
 import java.util.*;
 
@@ -28,7 +27,7 @@ public class InvoiceServiceDbImpl implements InvoiceService {
     private InvoiceJPARepository invoiceRepository;
 
     public List<InvoiceResponseModel> getAll() {
-        List<InvoiceResponseModel> invoiceList = InvoiceMapper.INSTANCE.mapToUserResponseModelList(invoiceRepository.findAll());
+        List<InvoiceResponseModel> invoiceList = InvoiceMapper.INSTANCE.mapToInvoiceResponseModelList(invoiceRepository.findAll());
         if (CollectionUtils.isEmpty(invoiceList)) {
             return Collections.emptyList();
         }
@@ -57,7 +56,7 @@ public class InvoiceServiceDbImpl implements InvoiceService {
         if (invoice.getCustomer() == null) {
             throw new BadRequestException("customer must not be null");
         }
-        final UserResponseModel customer = this.externalApiService.getCustomerById(invoice.getCustomer());
+        final CustomerResponseModel customer = this.externalApiService.getCustomerById(invoice.getCustomer());
         if (customer == null) {
             throw new BadRequestException(String.format("customer with id '%d' is not present in the system", invoice.getCustomer()));
         }
@@ -74,7 +73,7 @@ public class InvoiceServiceDbImpl implements InvoiceService {
     }
 
     private InvoiceResponseModel convertInvoiceEntityIntoResponseModel(final Invoice invoice) {
-        final InvoiceResponseModel invoiceResponseModel = InvoiceMapper.INSTANCE.mapToUserResponseModel(invoice);
+        final InvoiceResponseModel invoiceResponseModel = InvoiceMapper.INSTANCE.mapToInvoiceResponseModel(invoice);
         invoiceResponseModel.setAmount(invoice.getRate() * invoice.getQuantity());
         return invoiceResponseModel;
     }

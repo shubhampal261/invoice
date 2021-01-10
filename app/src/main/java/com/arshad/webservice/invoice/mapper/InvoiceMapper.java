@@ -12,7 +12,7 @@ public interface InvoiceMapper {
 
     InvoiceMapper INSTANCE = Mappers.getMapper(InvoiceMapper.class);
 
-    InvoiceResponseModel mapToUserResponseModel(final Invoice invoice);
+    InvoiceResponseModel mapToInvoiceResponseModel(final Invoice invoice);
 
-    List<InvoiceResponseModel> mapToUserResponseModelList(final List<Invoice> invoiceList);
+    List<InvoiceResponseModel> mapToInvoiceResponseModelList(final List<Invoice> invoiceList);
 }
