@@ -1,0 +1,16 @@
+{{- if .Values.global.inventoryInternal.services.ingress.invoiceService.enable }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ tpl .Values.global.inventoryInternal.name . }}-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+spec: 
+  rules:
+  - http:
+      paths:
+        - path: /v1/invoice
+          backend:
+            serviceName: {{ tpl .Values.global.inventoryInternal.name .}}
+            servicePort: {{ .Values.global.inventoryInternal.services.invoiceService.port }}
+{{- end }}

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ tpl .Values.global.inventoryInternal.name . }}
+  labels:
+    app: {{ tpl .Values.global.inventoryInternal.name . }}
+    release: {{ .Values.global.inventoryInternal.productName }}
+
+spec:
+  replicas: {{ .Values.global.inventory.replicaCount }}
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      app: {{ tpl .Values.global.inventoryInternal.name . }}
+  template:
+    metadata:
+      labels:
+        app: {{ tpl .Values.global.inventoryInternal.name . }}
+    spec:
+      containers:
+        - name: inventory-invoice
+          image: {{ tpl .Values.inventory.image.name . }}
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: {{ .Values.global.inventoryInternal.services.invoiceService.port }}
+      imagePullSecrets:
+        - name: {{ tpl .Values.global.inventoryInternal.pullSecret . }}

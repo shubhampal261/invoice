@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/invoice_management
+    url: jdbc:postgresql://inventory-postgres:5432/invoice_management
     username: postgres
     password: postgres
     hikari:
@@ -28,5 +28,5 @@ logging:
 
 external:
   url:
-    product: http://localhost:8081
-    customer: http://localhost:8080
+    product: http://inventory-product-service:8081
+    customer: http://inventory-customer-service:8080

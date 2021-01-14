@@ -1,0 +1,26 @@
+global:
+  inventory:
+    replicaCount: 1
+    productName: "inventory"
+    repository:
+      hostname: "127.0.0.1:5000"
+  
+  inventoryInternal:
+    module: "invoice-service"
+    pullPolicy: "Always"
+    pullSecret: "{{ .Values.global.inventory.productName}}-{{ .Values.global.inventory.repository.hostname | replace \":\" \"-\" | replace \".\" \"-\"}}"
+    debug: true
+    name: "{{ .Values.global.inventory.productName }}-{{ .Values.global.inventoryInternal.module }}"
+    services:
+      ingress:
+        invoiceService:
+          externalHostname: ~
+          tlsSecret: ~
+          enable: true
+      invoiceService:
+        name: "{{ .Values.global.inventoryInternal.name }}"
+        port: 8082
+
+inventory:
+  image:
+    name: "{{ .Values.global.inventory.repository.hostname }}/arshads96/{{ .Values.global.inventoryInternal.module }}:latest"

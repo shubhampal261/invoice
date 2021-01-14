@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ tpl .Values.global.inventoryInternal.name . }}
+  labels:
+    app: {{ tpl .Values.global.inventoryInternal.name . }}
+    release: {{ .Values.global.inventoryInternal.productName }}
+spec:
+  ports:
+    - name: http-port
+      port: {{ .Values.global.inventoryInternal.services.invoiceService.port }}
+  selector:
+    app: {{ tpl .Values.global.inventoryInternal.name . }}
+    
+---
+{{- if .Values.global.inventoryInternal.debug }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ tpl .Values.global.inventoryInternal.name . }}-debug
+  labels:
+    app: {{ tpl .Values.global.inventoryInternal.name . }}
+    release: {{ .Values.global.inventoryInternal.productName }}
+spec:
+  ports:
+    - name: http-port
+      port: 8092
+      nodePort: 30018
+  selector:
+    app: {{ tpl .Values.global.inventoryInternal.name . }}
+  type: NodePort    
+{{- end}}
+
